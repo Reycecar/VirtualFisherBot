@@ -9,9 +9,11 @@ import time
 keyboard = Controller()
 
 RUNS = 50
-COOLDOWN = 3
-BAIT = "Leeches"
+COOLDOWN = 2.7
+BAIT = "Fish"
 BAITNUM = 50
+RODS = ["Plastic", "Improved", "Steel", "Fiberglass", "Heavy", "Alloy", "Lava", "Magma"]
+ROD_CURR = "Heavy"
 
 def go_fish():
     for i in range(RUNS):
@@ -31,6 +33,15 @@ def get_bait():
         time.sleep(0.1)
     enter()
     time.sleep(COOLDOWN)
+
+def rod_up():
+    #Changes Current rod to the next best rod
+    return
+
+def rod_down():
+    #Changes Current rod to the next rod down
+    
+    return
 
 def sell():
     txt = "%sell all"
