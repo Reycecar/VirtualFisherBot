@@ -9,7 +9,7 @@ import time
 keyboard = Controller()
 
 RUNS = 50
-COOLDOWN = 2.7
+COOLDOWN = 2.8
 BAIT = "Fish"
 BAITNUM = 50
 RODS = ["Plastic", "Improved", "Steel", "Fiberglass", "Heavy", "Alloy", "Lava", "Magma"]
