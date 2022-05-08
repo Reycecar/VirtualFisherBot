@@ -9,7 +9,7 @@ Type on your keyboard one of the command hotkeys:
 Num_Lock: Fish for you RUNS number of times at an interval COOLDOWN seconds apart
 Insert: Sells all your gathered fish
 End: Buys BAITNUM number of BAIT (default Leeches)
-Esc: Sells all your fish and kills the program
+Esc: Sells all your fish and kills the program (will not kill while other funtions are running)
 ```
 ## Personalization:
 ```

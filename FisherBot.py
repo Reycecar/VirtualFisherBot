@@ -3,68 +3,50 @@
 3/4/2022
 '''
 
-from pynput.keyboard import Controller, Key, Listener
+from multiprocessing import Event
+from pynput.keyboard import *
 import os
 import time
+
 keyboard = Controller()
 
-RUNS = 50
+RUNS = 5
 COOLDOWN = 2.8
 BAIT = "Fish"
 BAITNUM = 50
-RODS = ["Plastic", "Improved", "Steel", "Fiberglass", "Heavy", "Alloy", "Lava", "Magma"]
-ROD_CURR = "Heavy"
+                    
 
+#Types %f (fishing), is interrupted by pressing end
 def go_fish():
-    for i in range(RUNS):
+    for _ in range(RUNS):
         txt = "%f"
-        for i in txt:
-            keyboard.press(i)
-            keyboard.release(i)
-            time.sleep(0.1)
-        enter()
+        typer(txt)
         time.sleep(COOLDOWN)
 
+#buys BAITNUM of BAIT when end is pressed after program is run
 def get_bait():
-    txt = "%buy " + BAIT + " " + BAITNUM
-    for i in txt:
-        keyboard.press(i)
-        keyboard.release(i)
-        time.sleep(0.1)
-    enter()
-    time.sleep(COOLDOWN)
+    txt = "%buy " + BAIT + " " + str(BAITNUM)
+    typer(txt)
 
-def rod_up():
-    #Changes Current rod to the next best rod
-    return
-
-def rod_down():
-    #Changes Current rod to the next rod down
-    
-    return
-
+#called when insert key is pressed after program is run
 def sell():
     txt = "%sell all"
-    for i in txt:
-        keyboard.press(i)
-        keyboard.release(i)
-        time.sleep(0.1)
-    time.sleep(COOLDOWN)
-    enter()
-    
-def end():
-    end_txt = "%sell all"
-    for i in end_txt:
-        keyboard.press(i)
-        keyboard.release(i)
-        time.sleep(0.1)
-    enter()
-    os.system('taskkill /IM "Python.exe" /F')
+    typer(txt)
 
+#function for pressing enter
 def enter():
     keyboard.press(Key.enter)
     keyboard.release(Key.enter)
 
+#Types text to wherever your curser is
+def typer(text):
+    for i in text:
+        keyboard.press(i)
+        keyboard.release(i)
+        time.sleep(0.1)
+    enter()
+
+#Runs funtions based on Key Pressed
 def on_press(key):
     if key == Key.num_lock:
         go_fish()
@@ -73,7 +55,13 @@ def on_press(key):
     elif key == Key.end:
         get_bait()
     elif key == Key.esc:
-        end()
-    
-with Listener(on_press=on_press, on_release=None) as listener:
-        listener.run()
+        os.system('taskkill /IM "Python.exe" /F')
+
+#Main, Starts the listener
+def main():
+    with Listener(on_press=on_press, on_release=None) as listener:
+        while True:
+            listener.run()
+
+if __name__ == "__main__":
+    main()
